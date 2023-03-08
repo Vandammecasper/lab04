@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Pressable, Text, View } from "react-native"
 import useRandomColor from "../hooks/useRandomColor"
 import IColor from "../models/IColor"
+import { StyleSheet} from 'react-native';
 
 export default () => {
     const [testColor, setTestColor] = useState<IColor>({name: 'snow', rgb: 'rgb(255, 250, 250)', hex: '#FFFAFA'})
@@ -14,12 +15,12 @@ export default () => {
 
     return (
         <Pressable onPress={()=>setTestColor(getRandomColor(testColor))} style={[styles.container,{backgroundColor: testColor.hex}]}>
-            <Text>{testColor.name}</Text>
-            <Text>{testColor.rgb}</Text>
-            <Text>{testColor.hex}</Text>
+            <Text style={styles.name}>{testColor.name}</Text>
+            <Text style={styles.rgb}>{testColor.rgb}</Text>
+            <Text style={styles.hex}>{testColor.hex}</Text>
 
-            <Text>Tab anywhere to get a new color.</Text>
-            <Pressable onPress={() => {navigate('Settings')}} style={null}><Text>Go to settings</Text></Pressable>
+            <Text style={styles.info}>Tab anywhere to get a new color.</Text>
+            <Pressable onPress={() => {navigate('Settings')}} style={null}><Text style={styles.settings}>Go to settings</Text></Pressable>
         </Pressable>
     )
 }
@@ -34,7 +35,26 @@ const styles = StyleSheet.create({
         fontSize: 32,
         fontWeight: 'bold',
         textAlign: 'left',
+        marginTop: -100,
+        marginBottom: 16,
     },
-    
-
+    rgb: {
+        fontSize: 24,
+        textAlign: 'left',
+    },
+    hex: {
+        fontSize: 24,
+        textAlign: 'left',
+        marginBottom: 24,
+    },
+    info: {
+        fontSize: 16,
+        textAlign: 'left',
+        marginBottom: 32,
+        fontWeight: '100',
+    },
+    settings: {
+        fontSize: 16,
+        textAlign: 'left',
+    },
 })

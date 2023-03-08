@@ -10,11 +10,11 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 const Stack : TypedNavigator< ParamListBase, StackNavigationState<ParamListBase>, StackNavigationOptions, StackNavigationEventMap, NativeComponentType<any>>= createStackNavigator()
 
-const screenOptions : StackNavigationOptions = { headerShown: false }
-
 export default () => {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions={{
+        headerShown: false,
+      }}>
             <Stack.Screen name="RandomColor" component={RandomColor}/>
             <Stack.Screen name="Settings" component={Settings}/>
         </Stack.Navigator>
